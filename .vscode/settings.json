@@ -1,0 +1,14 @@
+{
+  "files.associations": {
+    "*.tpp": "cpp",
+    "type_traits": "cpp",
+    "limits": "cpp",
+    "chrono": "cpp",
+    "random": "cpp",
+    "algorithm": "cpp"
+  },
+  "C_Cpp.codeAnalysis.clangTidy.checks.disabled": [
+    "bugprone-easily-swappable-parameters",
+    "readability-identifier-length"
+  ]
+}
