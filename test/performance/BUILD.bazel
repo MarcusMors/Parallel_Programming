@@ -1,0 +1,22 @@
+#load("@com_github_google_benchmark//:benchmark.bzl", "benchmark_cc_library")
+load("@rules_cc//cc:defs.bzl", "cc_test")
+
+# Define the lab_1 binary
+cc_binary(
+    name = "lab_1",
+    srcs = ["lab_1.cpp"],
+    deps = [
+        "@com_github_google_benchmark//:benchmark",
+        "@com_github_google_googletest//:gtest_main",
+    ],
+    copts = select({
+        "//:debug": [
+            "-O0", "-g3", "-fno-omit-frame-pointer",
+            "-fsanitize=address", "-fsanitize=undefined",
+            "-Wall", "-Wextra", "-Wshadow", "-Wnon-virtual-dtor",
+            "-pedantic", "-Wold-style-cast", "-Wformat=2",
+        ],
+        "//conditions:default": ["-O3"],
+    }),
+)
+

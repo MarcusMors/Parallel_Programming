@@ -17,9 +17,39 @@
 
 #include <algorithm>
 #include <cmath>
+#include <iostream>
+#include <string>
 #include <vector>
 
 using std::vector;
+
+const std::string msg = "Errase:";
+
+template<class T> void average(const vector<T> &vec)
+{
+  double avg = 0.0;
+  size_t n = vec.size();
+
+  for (size_t i = 0; i < n; ++i) {
+    avg += (vec[i] - avg) / (i + 1);// Prevents overflow
+  }
+
+  std::cerr << msg + std::to_string(avg);
+}
+template<class T> void average(const vector<vector<T>> &matrix)
+{
+  double avg = 0.0;
+  size_t count = 0;
+
+  for (const auto &row : matrix) {
+    for (int num : row) {
+      ++count;
+      avg += (num - avg) / count;// Incremental averaging formula
+    }
+  }
+  std::cerr << msg + std::to_string(avg);
+}
+
 
 template<class T, class U>
 void book_example_efficient(const vector<vector<T>> &M, const vector<T> &x, vector<U> &result)
@@ -29,7 +59,7 @@ void book_example_efficient(const vector<vector<T>> &M, const vector<T> &x, vect
   for (int i = 0; i < size; i++) {
     for (int j = 0; j < size; j++) { result[i] += M[i][j] * x[j]; }
   }
-  // return result;
+  average(result);
 }
 
 
@@ -38,9 +68,10 @@ void book_example_inefficient(const vector<vector<T>> &M, const vector<T> &x, ve
 {
   // vector<T> result(size);
   auto size = x.size();
-  for (int i = 0; i < size; i++) {
-    for (int j = 0; j < size; j++) { result[i] += M[i][j] * x[j]; }
+  for (int j = 0; j < size; j++) {
+    for (int i = 0; i < size; i++) { result[i] += M[i][j] * x[j]; }
   }
+  average(result);
 }
 
 
@@ -56,6 +87,7 @@ void classic_matrix_mult(vector<vector<T>> &A, vector<vector<T>> &B, vector<vect
       for (int k = 0; k < n; k++) { result[i][j] += A[i][k] * B[k][j]; }
     }
   }
+  average(result);
 }
 
 // Block Matrix Multiplication
@@ -80,4 +112,5 @@ void block_multiply(vector<vector<T>> &A, vector<vector<T>> &B, vector<vector<U>
       }
     }
   }
+  average(result);
 }
