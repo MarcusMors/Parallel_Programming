@@ -21,66 +21,63 @@
 
 using std::vector;
 
-template<class T> vector<T> &book_example_efficient(const vector<vector<T>> M, const vector<T> x, auto size)
+template<class T, class U>
+void book_example_efficient(const vector<vector<T>> &M, const vector<T> &x, vector<U> &result)
 {
-  vector<T> result(size);
+  // vector<T> result(size);
+  auto size = x.size();
   for (int i = 0; i < size; i++) {
     for (int j = 0; j < size; j++) { result[i] += M[i][j] * x[j]; }
   }
-  return result;
+  // return result;
 }
 
 
-template<class T> vector<T> &book_example_inefficient(const vector<vector<T>> M, const vector<T> x, auto size)
+template<class T, class U>
+void book_example_inefficient(const vector<vector<T>> &M, const vector<T> &x, vector<U> &result)
 {
-  vector<T> result(size);
+  // vector<T> result(size);
+  auto size = x.size();
   for (int i = 0; i < size; i++) {
     for (int j = 0; j < size; j++) { result[i] += M[i][j] * x[j]; }
   }
-  return result;
 }
 
 
-template<class T> vector<vector<T>> &classic_matrix_mult(vector<vector<T>> A, vector<vector<T>> B)
+template<class T, class U>
+void classic_matrix_mult(vector<vector<T>> &A, vector<vector<T>> &B, vector<vector<U>> &result)
 {
   int n = A.size();// Rows in A
-  int m = A[0].size();// Columns in A / Rows in B
-  int p = B[0].size();// Columns in B
 
-  vector<vector<T>> result(n, vector<T>(p, 0));
+  // vector<vector<T>> result(n, vector<T>(n, 0));
 
   for (int i = 0; i < n; i++) {
-    for (int j = 0; j < p; j++) {
-      for (int k = 0; k < m; k++) { result[i][j] += A[i][k] * B[k][j]; }
+    for (int j = 0; j < n; j++) {
+      for (int k = 0; k < n; k++) { result[i][j] += A[i][k] * B[k][j]; }
     }
   }
-
-  return result;
 }
+
 // Block Matrix Multiplication
-template<typename T>
-vector<vector<T>> block_multiply(const vector<vector<T>> &A, const vector<vector<T>> &B, auto blockSize)
+template<class T, class U, class V>
+void block_multiply(vector<vector<T>> &A, vector<vector<T>> &B, vector<vector<U>> &result, V blockSize)
 {
   using std::min;
   using std::max;
 
-  int n = A.size();// Rows of A
-  int m = A[0].size();// Columns of A (Rows of B)
-  int p = B[0].size();// Columns of B
+  int n = A.size();
 
-  vector<vector<T>> result(n, vector<T>(p, 0));
+  // vector<vector<T>> result(n, vector<T>(n, 0));
 
   for (int i = 0; i < n; i += blockSize) {
-    for (int j = 0; j < p; j += blockSize) {
-      for (int k = 0; k < m; k += blockSize) {
+    for (int j = 0; j < n; j += blockSize) {
+      for (int k = 0; k < n; k += blockSize) {
         for (int ii = i; ii < min(i + blockSize, n); ii++) {
-          for (int jj = j; jj < min(j + blockSize, p); jj++) {
-            for (int kk = k; kk < min(k + blockSize, m); kk++) { result[ii][jj] += A[ii][kk] * B[kk][jj]; }
+          for (int jj = j; jj < min(j + blockSize, n); jj++) {
+            for (int kk = k; kk < min(k + blockSize, n); kk++) { result[ii][jj] += A[ii][kk] * B[kk][jj]; }
           }
         }
       }
     }
   }
-
-  return result;
 }

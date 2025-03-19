@@ -9,6 +9,10 @@
   },
   "C_Cpp.codeAnalysis.clangTidy.checks.disabled": [
     "bugprone-easily-swappable-parameters",
-    "readability-identifier-length"
+    "readability-identifier-length",
+    "cppcoreguidelines-macro-usage",
+    "boost-use-ranges",
+    "modernize-use-ranges",
+    "cppcoreguidelines-avoid-magic-numbers"
   ]
 }
