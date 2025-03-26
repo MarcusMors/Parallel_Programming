@@ -31,6 +31,42 @@ namespace utils {
 
 using namespace std;
 
+template<typename T> T bit_number(ui Bytes)
+{
+  // static_assert(sizeof(T) < Bytes, "the type isn't able to hold that much Bytes");
+  if (sizeof(T) < Bytes) {
+    std::cerr << "the type isn't able to hold " << Bytes << " Bytes\n";
+    std::cerr << "sizeof(T)\t: " << sizeof(T) << "\n";
+    std::cerr << "Bytes\t\t: " << Bytes << " \n";
+    return 0;
+  }
+  T n{ 1 };
+  for (ui i = 0; i <= Bytes; i++) { n <<= 3; }
+
+  return n;
+}
+
+template<typename T> std::string to_str(const T &number)
+{
+  std::stringstream ss;
+  ss << number;
+  std::string str;
+  ss >> str;
+  return str;
+}
+
+template<typename T>
+concept Integer = std::is_integral_v<T>;
+
+template<Integer T> constexpr char get_sign()
+{
+  if constexpr (std::is_unsigned_v<T>) {
+    return 'u';
+  } else {
+    return 'i';
+  }
+}
+
 template<class T_Seed = std::random_device,
   class T_Engine = std::default_random_engine,
   class T_intType = short int,

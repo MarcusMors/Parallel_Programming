@@ -75,19 +75,21 @@ L3 cache:                            724.07
 
 g++-14 -std=c++23 -fno-omit-frame-pointer -O0 -g3 BMF_book_example_both.cpp -o BMF_book_example_both.out
 
+g++ -std=c++11 -O0 -g BMF_book_example_both.cpp -o BMF_book_example_both.out
+
 valgrind --tool=cachegrind --cachegrind-out-file=cachegrind.out ./BMF_book_example_both.out
 cg_annotate cachegrind.out
 kcachegrind cachegrind.out
 
 g++-14 -std=c++23 -fno-omit-frame-pointer -O0 -g3 BMF_classic_matrix_mult.cpp -o BMF_classic_matrix_mult.out
-valgrind --tool=cachegrind --cachegrind-out-file=cachegrind.out ./BMF_classic_matrix_mult.out
-cg_annotate cachegrind.out
-kcachegrind cachegrind.out
+valgrind --tool=cachegrind --cachegrind-out-file=classic_matrix_mult_cachegrind.out ./BMF_classic_matrix_mult.out
+cg_annotate classic_matrix_mult_cachegrind.out
+kcachegrind classic_matrix_mult_cachegrind.out
 
 g++-14 -std=c++23 -fno-omit-frame-pointer -O0 -g3 BMF_block_multiply.cpp  -o BMF_block_multiply.out
-valgrind --tool=cachegrind --cachegrind-out-file=cachegrind.out ./BMF_block_multiply.out
-cg_annotate cachegrind.out
-kcachegrind cachegrind.out
+valgrind --tool=cachegrind --cachegrind-out-file=block_multiply_cachegrind.out ./BMF_block_multiply.out
+cg_annotate block_multiply_cachegrind.out
+kcachegrind block_multiply_cachegrind.out
 
             .          template<class T, class U>
             8  (0.0%)  void book_example_efficient(const vector<vector<T>> &M, const vector<T> &x, vector<U> &result)
