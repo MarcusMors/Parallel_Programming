@@ -21,7 +21,7 @@
 #include <omp.h>
 
 void Usage(char prog_name[]);
-
+// 
 int main(int argc, char* argv[]) {
    int thread_count, n, i;
    long long* fibo;

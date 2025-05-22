@@ -1,13 +1,3 @@
-###############################
-# CMAKE build directory       #
-###############################
-build
-./**/build
-./**/build/
-./**/build/**
-build/**
-ipp-source-use
-**/build
 
 ###############################
 # Git Line Endings            #
