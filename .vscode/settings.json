@@ -17,5 +17,6 @@
     "cppcoreguidelines-avoid-magic-numbers",
     "readability-magic-numbers",
     "misc-use-anonymous-namespace"
-  ]
+  ],
+  "cmake.ignoreCMakeListsMissing": true
 }

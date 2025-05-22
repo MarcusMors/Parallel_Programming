@@ -1,0 +1,1 @@
+/usr/bin/g++-13 -O0 CMakeFiles/lab_1.out.dir/one_process_nbody_bm.cpp.o -o lab_1.out  /usr/lib/x86_64-linux-gnu/libbenchmark.so.1.8.3 -lm 

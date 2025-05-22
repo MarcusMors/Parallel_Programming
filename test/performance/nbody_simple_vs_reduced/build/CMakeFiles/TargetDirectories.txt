@@ -1,0 +1,3 @@
+/home/marcus/+projects/Parallel_Programming/test/performance/nbody_simple_vs_reduced/build/CMakeFiles/lab_1.out.dir
+/home/marcus/+projects/Parallel_Programming/test/performance/nbody_simple_vs_reduced/build/CMakeFiles/edit_cache.dir
+/home/marcus/+projects/Parallel_Programming/test/performance/nbody_simple_vs_reduced/build/CMakeFiles/rebuild_cache.dir

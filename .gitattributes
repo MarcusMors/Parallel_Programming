@@ -6,6 +6,8 @@ build
 ./**/build/
 ./**/build/**
 build/**
+ipp-source-use
+**/build
 
 ###############################
 # Git Line Endings            #
